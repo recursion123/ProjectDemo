@@ -12,8 +12,7 @@
         </where>
     </select>
     <insert id="insertUser">
-        insert into user_tbl values ( #{name},#{password},#{role}
-        )
+        insert into user_tbl values ( #{name},#{password},#{role})
     </insert>
     <delete id="deleteUser">
         <if test="name != null">

@@ -2,7 +2,6 @@ package com.recursion123.model;
 
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by zhang on 2017/1/22.

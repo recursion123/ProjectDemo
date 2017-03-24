@@ -26,6 +26,6 @@ public class test {
 
     @Test
     public void testQuery(){
-        System.out.println(userDaoSql.insertUser(new User("zhang","123",Role.USER)));
+        System.out.println(userDaoSql.listUser(new User("zhang","123",Role.USER)));
     }
 }

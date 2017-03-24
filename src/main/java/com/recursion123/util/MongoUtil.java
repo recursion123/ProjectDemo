@@ -1,12 +1,16 @@
 package com.recursion123.util;
 
-import com.mongodb.*;
+import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by zhang on 2017/1/22.
@@ -16,12 +20,13 @@ public enum MongoUtil {
     COLLECTIONS;
 
     private Mongo mongo;
-
     private String mongoConfig = "mongoConfig";
-    private String mongoDatabase = PropertiesUtil.getPro(mongoConfig).getProperty("mongoDatabase");
-    private String mongoUsername = PropertiesUtil.getPro(mongoConfig).getProperty("mongoUsername");
-    private String mongoPassword = PropertiesUtil.getPro(mongoConfig).getProperty("mongoPassword");
-    private String mongoAddress = PropertiesUtil.getPro(mongoConfig).getProperty("mongoAddress");
+    private Properties properties = PropertiesUtil.getPro(mongoConfig);
+
+    private String mongoDatabase = properties.getProperty("mongoDatabase");
+    private String mongoUsername = properties.getProperty("mongoUsername");
+    private String mongoPassword = properties.getProperty("mongoPassword");
+    private String mongoAddress = properties.getProperty("mongoAddress");
 
     private Mongo getConnect() {
         if (mongo == null) {

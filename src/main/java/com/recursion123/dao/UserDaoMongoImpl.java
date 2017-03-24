@@ -1,18 +1,12 @@
 package com.recursion123.dao;
 
 import com.google.gson.Gson;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 import com.recursion123.model.User;
 import com.recursion123.util.MongoUtil;
 import org.jongo.MongoCollection;
-import org.junit.Test;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by zhang on 2017/1/22.

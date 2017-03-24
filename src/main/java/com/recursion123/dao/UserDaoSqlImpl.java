@@ -1,13 +1,9 @@
 package com.recursion123.dao;
 
 import com.recursion123.model.User;
-import com.recursion123.model.UserMapper;
 import org.apache.ibatis.session.SqlSession;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
 import java.util.List;
 
 /**
