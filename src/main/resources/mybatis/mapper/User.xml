@@ -3,31 +3,62 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.recursion123.model.User">
-    <select id="listUser" resultType="com.recursion123.model.User">
-        select * from user_tbl
-        <where>
-            <if test="name != null">
-                name = #{name}
-            </if>
-        </where>
+    <resultMap id="User" type="com.recursion123.model.User">
+        <id property="id" column="user_id"/>
+        <result property="name" column="user_name"/>
+        <result property="password" column="user_password"/>
+        <collection property="role" ofType="com.recursion123.model.Role" resultMap="Role" columnPrefix="role_"/>
+    </resultMap>
+
+    <resultMap id="Role" type="com.recursion123.model.Role">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="listUser" resultMap="User">
+        SELECT
+        ut.id       user_id,
+        ut.name     user_name,
+        ut.password user_password,
+        urm.role_id role_id,
+        rt.name     role_name
+        FROM user_role_map urm, role_tbl rt, user_tbl ut
+        WHERE urm.role_id = rt.id AND urm.user_id = ut.id
+        <if test="name != null">AND ut.name=#{name}</if>
     </select>
+
     <insert id="insertUser">
-        insert into user_tbl values ( #{name},#{password},#{role})
+        <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
+            SELECT currval('user_tbl_id_seq')
+        </selectKey>
+        insert into user_tbl(name,password) values (#{name},#{password})
     </insert>
+
+    <insert id="insertRole">
+        insert into role_tbl(name) values (#{name})
+    </insert>
+
+    <insert id="insertUserRoleMap" useGeneratedKeys="true">
+        insert into user_role_map(user_id,role_id)  values
+        <foreach item="Role" collection="role" separator=",">
+            (#{id},#{Role.id})
+        </foreach>
+    </insert>
+
     <delete id="deleteUser">
         <if test="name != null">
-             DELETE from user_tbl WHERE name = #{name}
+            DELETE from user_tbl WHERE name = #{name}
         </if>
     </delete>
+
     <update id="updateUser">
 
     </update>
+
     <select id="findUser" resultType="int">
         <if test="name != null">
             select count(*) from user_tbl where name = #{name} and password=#{password}
         </if>
     </select>
-    <select id="findUserByName"  resultType="com.recursion123.model.User">
-            select * from user_tbl where name = #{userName}
-    </select>
+
 </mapper>

@@ -2,6 +2,7 @@ package com.recursion123.model;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by zhang on 2017/1/22.
@@ -10,12 +11,12 @@ public class User implements Serializable {
     private Integer id;
     private String name;
     private String password;
-    private Role role;
+    private List<Role> role;
 
     public User() {
     }
 
-    public User(String name, String password,Role role) {
+    public User(String name, String password, List<Role> role) {
         this.name = name;
         this.password = password;
         this.role = role;
@@ -45,11 +46,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Role getRole() {
+    public List<Role> getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(List<Role> role) {
         this.role = role;
     }
 

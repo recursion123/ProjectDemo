@@ -3,6 +3,7 @@ package com.recursion123.dao;
 import com.recursion123.model.User;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,8 +25,10 @@ public class UserDaoSqlImpl implements UserDao {
     }
 
     @Override
+    @Transactional
     public Integer insertUser(User user) {
-        return this.sqlSession.insert("com.recursion123.model.User.insertUser", user);
+        this.sqlSession.insert("com.recursion123.model.User.insertUser", user);
+        return this.sqlSession.insert("com.recursion123.model.User.insertUserRoleMap", user);
     }
 
     @Override
@@ -45,7 +48,10 @@ public class UserDaoSqlImpl implements UserDao {
 
     @Override
     public User findUserByName(String userName) {
-        return this.sqlSession.selectOne("com.recursion123.model.User.findUserByName", userName);
+        List<User> userList = listUser(new User(userName, null, null));
+        if (userList.size() > 0)
+            return userList.get(0);
+        else
+            return null;
     }
-
 }

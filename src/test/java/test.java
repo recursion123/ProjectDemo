@@ -11,7 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {BaseApplication.class})
@@ -25,7 +27,10 @@ public class test {
     private UserDaoSqlImpl userDaoSql;
 
     @Test
-    public void testQuery(){
-        System.out.println(userDaoSql.listUser(new User("zhang","123",Role.USER)));
+    public void testQuery() {
+        User user = new User();
+        user.setName("lisi4");
+        user.setPassword("123456");
+        System.out.println(userDaoSql.insertUser(user));
     }
 }
