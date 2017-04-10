@@ -17,43 +17,71 @@
 
     <select id="listUser" resultMap="User">
         SELECT
-        ut.id       user_id,
-        ut.name     user_name,
+        ut.id user_id,
+        ut.name user_name,
         ut.password user_password,
         urm.role_id role_id,
-        rt.name     role_name
-        FROM user_role_map urm, role_tbl rt, user_tbl ut
-        WHERE urm.role_id = rt.id AND urm.user_id = ut.id
-        <if test="name != null">AND ut.name=#{name}</if>
+        rt.name role_name
+        FROM user_tbl ut LEFT JOIN user_role_map urm ON urm.user_id = ut.id
+        LEFT JOIN role_tbl rt ON urm.role_id = rt.id
+        <where>
+            <if test="name != null">ut.name=#{name}</if>
+        </where>
     </select>
 
-    <insert id="insertUser">
-        <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
-            SELECT currval('user_tbl_id_seq')
-        </selectKey>
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        <!--<selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">-->
+            <!--SELECT currval('user_tbl_id_seq')-->
+        <!--</selectKey>-->
         insert into user_tbl(name,password) values (#{name},#{password})
     </insert>
 
     <insert id="insertRole">
-        insert into role_tbl(name) values (#{name})
+        INSERT INTO role_tbl (name) VALUES (#{name})
     </insert>
 
     <insert id="insertUserRoleMap" useGeneratedKeys="true">
-        insert into user_role_map(user_id,role_id)  values
+        insert into user_role_map(user_id,role_id) values
         <foreach item="Role" collection="role" separator=",">
             (#{id},#{Role.id})
         </foreach>
     </insert>
 
+    <delete id="deleteUserRoleMap">
+        DELETE FROM user_role_map
+        WHERE user_id = #{id}
+    </delete>
+
     <delete id="deleteUser">
         <if test="name != null">
-            DELETE from user_tbl WHERE name = #{name}
+            DELETE from user_tbl t WHERE name= #{name}
         </if>
     </delete>
 
     <update id="updateUser">
-
+        UPDATE user_tbl
+        SET password = #{password}
+        WHERE id = #{id}
     </update>
+
+    <update id="updateRole">
+        UPDATE role_tbl
+        SET name = #{name}
+        WHERE id = #{id}
+    </update>
+
+    <select id="listRole" resultMap="Role">
+        select *
+        FROM role_tbl
+        <where>
+            <if test="id!=null">
+                id=#{id}
+            </if>
+            <if test="name!=null">
+                and name=#{name}
+            </if>
+        </where>
+    </select>
 
     <select id="findUser" resultType="int">
         <if test="name != null">

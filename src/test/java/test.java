@@ -1,11 +1,9 @@
 import com.recursion123.application.BaseApplication;
-import com.recursion123.dao.UserDaoSqlImpl;
+import com.recursion123.dao.UserDao;
 import com.recursion123.model.Role;
 import com.recursion123.model.User;
-import com.recursion123.model.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,16 +19,12 @@ import java.util.List;
 public class test {
 
     @Autowired
-    private UserMapper mapper;
-
-    @Autowired
-    private UserDaoSqlImpl userDaoSql;
+    private UserDao userDaoSql;
 
     @Test
     public void testQuery() {
-        User user = new User();
-        user.setName("lisi4");
-        user.setPassword("123456");
-        System.out.println(userDaoSql.insertUser(user));
+        User user=new User("韩坚","123456", Arrays.asList(new Role[]{new Role(1,"admin"),new Role(2,"user")}));
+        System.out.println(userDaoSql.findUserByName("韩坚"));
+
     }
 }

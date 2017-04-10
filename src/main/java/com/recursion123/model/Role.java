@@ -1,11 +1,11 @@
 package com.recursion123.model;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
  * Created by zhang on 2017/1/22.
  */
-public class Role {
+public class Role implements Serializable {
     private Integer id;
     private String name;
 

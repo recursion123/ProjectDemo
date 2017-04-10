@@ -1,5 +1,6 @@
 package com.recursion123.dao;
 
+import com.recursion123.model.Role;
 import com.recursion123.model.User;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
@@ -32,13 +33,18 @@ public class UserDaoSqlImpl implements UserDao {
     }
 
     @Override
+    @Transactional
     public Integer deleteUser(User user) {
+        this.sqlSession.delete("com.recursion123.model.User.deleteUserRoleMap",user);
         return this.sqlSession.delete("com.recursion123.model.User.deleteUser", user);
     }
 
     @Override
+    @Transactional
     public Integer updateUser(User user, User condition) {
-        return this.sqlSession.update("com.recursion123.model.User.deleteUser", user);
+        this.sqlSession.delete("com.recursion123.model.User.deleteUserRoleMap", user);
+        this.sqlSession.insert("com.recursion123.model.User.insertUserRoleMap", user);
+        return this.sqlSession.update("com.recursion123.model.User.updateUser", user);
     }
 
     @Override
@@ -47,11 +53,22 @@ public class UserDaoSqlImpl implements UserDao {
     }
 
     @Override
-    public User findUserByName(String userName) {
-        List<User> userList = listUser(new User(userName, null, null));
-        if (userList.size() > 0)
-            return userList.get(0);
-        else
-            return null;
+    public User findUserByName(String name) {
+        return this.sqlSession.selectOne("com.recursion123.model.User.listUser", new User(name,null,null));
+    }
+
+    @Override
+    public Integer insertRole(Role role) {
+        return this.sqlSession.insert("com.recursion123.model.User.insertRole",role);
+    }
+
+    @Override
+    public Integer updateRole(Role role) {
+        return this.sqlSession.update("com.recursion123.model.User.updateRole",role);
+    }
+
+    @Override
+    public List<Role> listRole(Role role) {
+        return this.sqlSession.selectList("com.recursion123.model.User.listRole",role);
     }
 }

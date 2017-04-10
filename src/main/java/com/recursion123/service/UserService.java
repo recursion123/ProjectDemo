@@ -1,6 +1,7 @@
 package com.recursion123.service;
 
 import com.recursion123.dao.UserDao;
+import com.recursion123.model.Role;
 import com.recursion123.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,17 @@ public class UserService {
 
     public Integer findUser(User user) {
         return userDao.findUser(user);
+    }
+
+    public List<Role> listRole(Role role) {
+        return userDao.listRole(role);
+    }
+
+    public Integer insertRole(Role role) {
+        return userDao.insertRole(role);
+    }
+
+    public Integer updateRole(Role role) {
+        return userDao.updateRole(role);
     }
 }

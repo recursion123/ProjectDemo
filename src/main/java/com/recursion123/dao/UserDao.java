@@ -1,5 +1,6 @@
 package com.recursion123.dao;
 
+import com.recursion123.model.Role;
 import com.recursion123.model.User;
 
 import java.util.List;
@@ -19,4 +20,10 @@ public interface UserDao {
     Integer findUser(User user);
 
     User findUserByName(String username);
+
+    Integer insertRole(Role  role);
+
+    Integer updateRole(Role role);
+
+    List<Role> listRole(Role role);
 }

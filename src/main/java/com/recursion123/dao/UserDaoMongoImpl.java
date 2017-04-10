@@ -1,6 +1,7 @@
 package com.recursion123.dao;
 
 import com.google.gson.Gson;
+import com.recursion123.model.Role;
 import com.recursion123.model.User;
 import com.recursion123.util.MongoUtil;
 import org.jongo.MongoCollection;
@@ -48,5 +49,20 @@ public class UserDaoMongoImpl implements UserDao {
     @Override
     public User findUserByName(String username) {
         return mongoCollection.findOne("{name:'" + username + "'}").as(User.class);
+    }
+
+    @Override
+    public Integer insertRole(Role role) {
+        return null;
+    }
+
+    @Override
+    public Integer updateRole(Role role) {
+        return null;
+    }
+
+    @Override
+    public List<Role> listRole(Role role) {
+        return null;
     }
 }
