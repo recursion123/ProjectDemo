@@ -77,6 +77,6 @@ public class ObjectToXml {
     }
 
     public static void main(String[] args) throws Exception {
-
+        System.out.println(toXml(new User()));
     }
 }

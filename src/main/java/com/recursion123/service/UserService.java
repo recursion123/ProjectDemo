@@ -1,50 +1,33 @@
 package com.recursion123.service;
 
-import com.recursion123.dao.UserDao;
 import com.recursion123.model.Role;
 import com.recursion123.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.jws.WebService;
 import java.util.List;
 
 /**
- * Created by zhang on 2017/1/22.
+ * Created by zhang on 2017/6/29.
  */
 @Service
-public class UserService {
-    @Autowired
-    UserDao userDao;
+@WebService(targetNamespace = "http://service.ws.sample/", name = "User")
+public interface UserService {
+    List<User> listUser(User user);
 
-    public List<User> listUser(User user) {
-        return userDao.listUser(user);
-    }
+    Integer insertUser(User user);
 
-    public Integer insertUser(User user) {
-        return userDao.insertUser(user);
-    }
+    Integer deleteUser(User user);
 
-    public Integer deleteUser(User user) {
-        return userDao.deleteUser(user);
-    }
+    Integer updateUser(User user, User condition);
 
-    public Integer updateUser(User user, User condition) {
-        return userDao.updateUser(user, condition);
-    }
+    Integer findUser(User user);
 
-    public Integer findUser(User user) {
-        return userDao.findUser(user);
-    }
+    List<Role> listRole(Role role);
 
-    public List<Role> listRole(Role role) {
-        return userDao.listRole(role);
-    }
+    Integer insertRole(Role role);
 
-    public Integer insertRole(Role role) {
-        return userDao.insertRole(role);
-    }
+    Integer updateRole(Role role);
 
-    public Integer updateRole(Role role) {
-        return userDao.updateRole(role);
-    }
+    String sayHi(String str);
 }
