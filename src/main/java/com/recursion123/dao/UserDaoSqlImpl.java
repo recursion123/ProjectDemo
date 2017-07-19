@@ -2,6 +2,7 @@ package com.recursion123.dao;
 
 import com.recursion123.model.Role;
 import com.recursion123.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +42,7 @@ public class UserDaoSqlImpl implements UserDao {
 
     @Override
     @Transactional
-    public Integer updateUser(User user, User condition) {
+    public Integer updateUser(User user) {
         this.sqlSession.delete("com.recursion123.model.User.deleteUserRoleMap", user);
         this.sqlSession.insert("com.recursion123.model.User.insertUserRoleMap", user);
         return this.sqlSession.update("com.recursion123.model.User.updateUser", user);
@@ -70,5 +71,15 @@ public class UserDaoSqlImpl implements UserDao {
     @Override
     public List<Role> listRole(Role role) {
         return this.sqlSession.selectList("com.recursion123.model.User.listRole",role);
+    }
+
+    @Override
+    public Integer deleteRole(Role role) {
+        return this.sqlSession.delete("com.recursion123.model.User.deleteRole", role);
+    }
+
+    @Override
+    public String getRoleName(Integer id) {
+        return this.sqlSession.selectOne("com.recursion123.model.User.getRoleName", id);
     }
 }

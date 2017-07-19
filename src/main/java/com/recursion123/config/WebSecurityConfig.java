@@ -1,4 +1,4 @@
-package com.recursion123.application;
+package com.recursion123.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -28,8 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/services/*").permitAll()
+                .antMatchers("/login","/services/**").permitAll()
                 .anyRequest().hasAnyAuthority("admin")
                 .and().httpBasic()
                 .and().csrf().disable();

@@ -37,8 +37,8 @@ public class UserDaoMongoImpl implements UserDao {
     }
 
     @Override
-    public Integer updateUser(User user, User condition) {
-        return mongoCollection.update(gson.toJson(condition)).with(user).getN();
+    public Integer updateUser(User user) {
+        return mongoCollection.update("{id:'"+user.getId()+"'}").with(user).getN();
     }
 
     @Override
@@ -63,6 +63,16 @@ public class UserDaoMongoImpl implements UserDao {
 
     @Override
     public List<Role> listRole(Role role) {
+        return null;
+    }
+
+    @Override
+    public Integer deleteRole(Role role) {
+        return null;
+    }
+
+    @Override
+    public String getRoleName(Integer id) {
         return null;
     }
 }

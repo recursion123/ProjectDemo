@@ -19,7 +19,7 @@ public interface UserService {
 
     Integer deleteUser(User user);
 
-    Integer updateUser(User user, User condition);
+    Integer updateUser(User user);
 
     Integer findUser(User user);
 
@@ -29,5 +29,7 @@ public interface UserService {
 
     Integer updateRole(Role role);
 
-    String sayHi(String str);
+    Integer deleteRole(Role role);
+
+    String getName(String str);
 }

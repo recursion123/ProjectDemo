@@ -11,12 +11,12 @@ public class User implements Serializable {
     private Integer id;
     private String name;
     private String password;
-    private List<Role> role;
+    private List<Integer> role;
 
     public User() {
     }
 
-    public User(String name, String password, List<Role> role) {
+    public User(String name, String password, List<Integer> role) {
         this.name = name;
         this.password = password;
         this.role = role;
@@ -46,11 +46,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public List<Role> getRole() {
+    public List<Integer> getRole() {
         return role;
     }
 
-    public void setRole(List<Role> role) {
+    public void setRole(List<Integer> role) {
         this.role = role;
     }
 

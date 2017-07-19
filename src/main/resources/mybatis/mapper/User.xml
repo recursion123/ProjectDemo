@@ -7,7 +7,9 @@
         <id property="id" column="user_id"/>
         <result property="name" column="user_name"/>
         <result property="password" column="user_password"/>
-        <collection property="role" ofType="com.recursion123.model.Role" resultMap="Role" columnPrefix="role_"/>
+        <collection property="role" ofType="int">
+            <id property="role" column="role_id"/>
+        </collection>
     </resultMap>
 
     <resultMap id="Role" type="com.recursion123.model.Role">
@@ -31,9 +33,9 @@
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
         <!--<selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">-->
-            <!--SELECT currval('user_tbl_id_seq')-->
+        <!--SELECT currval('user_tbl_id_seq')-->
         <!--</selectKey>-->
-        insert into user_tbl(name,password) values (#{name},#{password})
+        INSERT INTO user_tbl(name,password) VALUES (#{name},#{password})
     </insert>
 
     <insert id="insertRole">
@@ -43,7 +45,7 @@
     <insert id="insertUserRoleMap" useGeneratedKeys="true">
         insert into user_role_map(user_id,role_id) values
         <foreach item="Role" collection="role" separator=",">
-            (#{id},#{Role.id})
+            (#{id},#{Role})
         </foreach>
     </insert>
 
@@ -54,7 +56,13 @@
 
     <delete id="deleteUser">
         <if test="name != null">
-            DELETE from user_tbl t WHERE name= #{name}
+            DELETE from user_tbl WHERE name= #{name}
+        </if>
+    </delete>
+
+    <delete id="deleteRole">
+        <if test="id != null">
+            DELETE from role_tbl WHERE id= #{id}
         </if>
     </delete>
 
@@ -86,6 +94,13 @@
     <select id="findUser" resultType="int">
         <if test="name != null">
             select count(*) from user_tbl where name = #{name} and password=#{password}
+        </if>
+    </select>
+
+
+    <select id="getRoleName" resultType="string">
+        <if test="_parameter != null">
+            select name from role_tbl where id = #{_parameter}
         </if>
     </select>
 

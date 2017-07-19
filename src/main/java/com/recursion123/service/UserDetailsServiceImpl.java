@@ -36,7 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private Set<GrantedAuthority> getAuthorities(User user) {
         Set<GrantedAuthority> authorities = new HashSet<>();
         user.getRole().forEach(role->{
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userDao.getRoleName(role));
             authorities.add(grantedAuthority);
         });
         System.err.println("user authorities are " + authorities.toString());

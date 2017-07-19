@@ -15,15 +15,19 @@ public interface UserDao {
 
     Integer deleteUser(User user);
 
-    Integer updateUser(User user,User condition);
+    Integer updateUser(User user);
 
     Integer findUser(User user);
 
     User findUserByName(String username);
 
-    Integer insertRole(Role  role);
+    Integer insertRole(Role role);
 
     Integer updateRole(Role role);
 
     List<Role> listRole(Role role);
+
+    Integer deleteRole(Role role);
+
+    String getRoleName(Integer id);
 }

@@ -15,7 +15,7 @@ import java.util.List;
 @javax.jws.WebService(serviceName = "UserService", portName = "UserPort",
         targetNamespace = "http://service.ws.sample/",
         endpointInterface = "com.recursion123.service.UserService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService{
         return userDao.deleteUser(user);
     }
 
-    public Integer updateUser(User user, User condition) {
-        return userDao.updateUser(user, condition);
+    public Integer updateUser(User user) {
+        return userDao.updateUser(user);
     }
 
     public Integer findUser(User user) {
@@ -52,7 +52,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public String sayHi(String str) {
-        return str;
+    public Integer deleteRole(Role role) {
+        return userDao.deleteRole(role);
+    }
+
+    @Override
+    public String getName(String str) {
+        return "<name>" + str + "</name>";
     }
 }

@@ -1,4 +1,4 @@
-package com.recursion123.application;
+package com.recursion123.config;
 
 import com.recursion123.service.UserServiceImpl;
 import org.apache.cxf.Bus;
