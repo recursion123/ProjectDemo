@@ -5,7 +5,6 @@ import com.recursion123.model.User;
 import com.recursion123.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,14 +35,12 @@ public class UserController {
     @RequestMapping("/user/delete")
     @ResponseBody
     public Integer deleteUser(@RequestBody User user) {
-        System.out.println(user);
         return userService.deleteUser(user);
     }
 
     @RequestMapping("/user/update")
     @ResponseBody
     public Integer updateUser(@RequestBody User user) {
-        System.out.println(user);
         return userService.updateUser(user);
     }
 
@@ -62,7 +59,6 @@ public class UserController {
     @RequestMapping("/user/insertRole")
     @ResponseBody
     public Integer insertRole(@RequestBody Role role) {
-        System.out.println(role);
         return userService.insertRole(role);
     }
 

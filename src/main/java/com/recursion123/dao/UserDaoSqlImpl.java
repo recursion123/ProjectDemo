@@ -2,7 +2,6 @@ package com.recursion123.dao;
 
 import com.recursion123.model.Role;
 import com.recursion123.model.User;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
