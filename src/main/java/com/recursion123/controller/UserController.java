@@ -62,6 +62,12 @@ public class UserController {
         return userService.insertRole(role);
     }
 
+    @RequestMapping("/user/updateRole")
+    @ResponseBody
+    public Integer updateRole(@RequestBody Role role) {
+        return userService.updateRole(role);
+    }
+
     @RequestMapping("/login")
     @ResponseBody
     public Integer login(@RequestBody User user) {
