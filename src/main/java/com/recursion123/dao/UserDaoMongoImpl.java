@@ -53,26 +53,31 @@ public class UserDaoMongoImpl implements UserDao {
 
     @Override
     public Integer insertRole(Role role) {
+        //TODO
         return null;
     }
 
     @Override
     public Integer updateRole(Role role) {
+        //TODO
         return null;
     }
 
     @Override
     public List<Role> listRole(Role role) {
+        //TODO
         return null;
     }
 
     @Override
     public Integer deleteRole(Role role) {
+        //TODO
         return null;
     }
 
     @Override
     public String getRoleName(Integer id) {
+        //TODO
         return null;
     }
 }
