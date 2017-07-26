@@ -16,10 +16,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @SpringBootApplication
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
-@ComponentScan("com.recursion123.*")
-@MapperScan("com.recursion123.model")
 public class BaseApplication extends SpringBootServletInitializer{
 
+//    //部署到外部tomcat
 //    @Override
 //    protected SpringApplicationBuilder configure(SpringApplicationBuilder config) {
 //        return config.sources(BaseApplication.class);

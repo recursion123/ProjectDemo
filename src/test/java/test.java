@@ -13,7 +13,6 @@ import java.util.Arrays;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {BaseApplication.class})
-@ComponentScan("com.recursion123")
 public class test {
 
     @Autowired
@@ -21,8 +20,7 @@ public class test {
 
     @Test
     public void testQuery() {
-        User user=new User("韩坚","123456", Arrays.asList(new Integer[]{1,2}));
-        System.out.println(userDaoSql.deleteRole(new Role(2,"user")));
+        System.out.println(userDaoSql.listUser(null));
 
     }
 }

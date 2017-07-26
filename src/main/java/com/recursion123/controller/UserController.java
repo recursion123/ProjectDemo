@@ -1,5 +1,6 @@
 package com.recursion123.controller;
 
+import com.recursion123.model.Department;
 import com.recursion123.model.Role;
 import com.recursion123.model.User;
 import com.recursion123.service.UserService;
@@ -67,6 +68,31 @@ public class UserController {
     public Integer updateRole(@RequestBody Role role) {
         return userService.updateRole(role);
     }
+
+    @RequestMapping("/user/listDept")
+    @ResponseBody
+    public List<Department> listDept(@RequestBody Department dept) {
+        return userService.listDept(dept);
+    }
+
+    @RequestMapping("/user/deleteDept")
+    @ResponseBody
+    public Integer deleteDept(@RequestBody Department dept) {
+        return userService.deleteDept(dept);
+    }
+
+    @RequestMapping("/user/insertDept")
+    @ResponseBody
+    public Integer insertDept(@RequestBody Department dept) {
+        return userService.insertDept(dept);
+    }
+
+    @RequestMapping("/user/updateDept")
+    @ResponseBody
+    public Integer updateDept(@RequestBody Department dept) {
+        return userService.updateDept(dept);
+    }
+
 
     @RequestMapping("/login")
     @ResponseBody

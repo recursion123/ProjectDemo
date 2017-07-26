@@ -1,5 +1,6 @@
 package com.recursion123.service;
 
+import com.recursion123.model.Department;
 import com.recursion123.model.Role;
 import com.recursion123.model.User;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,11 @@ public interface UserService {
 
     Integer deleteRole(Role role);
 
-    String getName(String str);
+    List<Department> listDept(Department dept);
+
+    Integer deleteDept(Department dept);
+
+    Integer insertDept(Department dept);
+
+    Integer updateDept(Department dept);
 }

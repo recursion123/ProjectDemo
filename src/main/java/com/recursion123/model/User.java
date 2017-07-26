@@ -11,6 +11,7 @@ public class User implements Serializable {
     private Integer id;
     private String name;
     private String password;
+    private Department dept;
     private List<Integer> role;
 
     public User() {
@@ -54,12 +55,21 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public Department getDept() {
+        return dept;
+    }
+
+    public void setDept(Department dept) {
+        this.dept = dept;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", dept=" + dept +
                 ", role=" + role +
                 '}';
     }

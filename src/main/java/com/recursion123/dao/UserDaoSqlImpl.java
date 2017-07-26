@@ -1,5 +1,6 @@
 package com.recursion123.dao;
 
+import com.recursion123.model.Department;
 import com.recursion123.model.Role;
 import com.recursion123.model.User;
 import org.apache.ibatis.session.SqlSession;
@@ -54,7 +55,7 @@ public class UserDaoSqlImpl implements UserDao {
 
     @Override
     public User findUserByName(String name) {
-        return this.sqlSession.selectOne("com.recursion123.model.User.listUser", new User(name,null,null));
+        return this.sqlSession.selectOne("com.recursion123.model.User.listUser", new User(name,null, null));
     }
 
     @Override
@@ -80,5 +81,30 @@ public class UserDaoSqlImpl implements UserDao {
     @Override
     public String getRoleName(Integer id) {
         return this.sqlSession.selectOne("com.recursion123.model.User.getRoleName", id);
+    }
+
+    @Override
+    public Integer insertDept(Department dept) {
+        return this.sqlSession.insert("com.recursion123.model.User.insertDept",dept);
+    }
+
+    @Override
+    public Integer updateDept(Department dept) {
+        return this.sqlSession.update("com.recursion123.model.User.updateDept",dept);
+    }
+
+    @Override
+    public List<Department> listDept(Department dept) {
+        return this.sqlSession.selectList("com.recursion123.model.User.listDept",dept);
+    }
+
+    @Override
+    public Integer deleteDept(Department dept) {
+        return this.sqlSession.delete("com.recursion123.model.User.deleteDept",dept);
+    }
+
+    @Override
+    public String getDeptName(Integer id) {
+        return this.sqlSession.selectOne("com.recursion123.model.User.getDeptName", id);
     }
 }

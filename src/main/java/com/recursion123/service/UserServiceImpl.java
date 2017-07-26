@@ -1,6 +1,7 @@
 package com.recursion123.service;
 
 import com.recursion123.dao.UserDao;
+import com.recursion123.model.Department;
 import com.recursion123.model.Role;
 import com.recursion123.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getName(String str) {
-        return "<name>" + str + "</name>";
+    public List<Department> listDept(Department dept) {
+        return userDao.listDept(dept);
     }
+
+    @Override
+    public Integer deleteDept(Department dept) {
+        return userDao.deleteDept(dept);
+    }
+
+    @Override
+    public Integer insertDept(Department dept) {
+        return userDao.insertDept(dept);
+    }
+
+    @Override
+    public Integer updateDept(Department dept) {
+        return userDao.updateDept(dept);
+    }
+
 }

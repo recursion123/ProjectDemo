@@ -7,6 +7,10 @@
         <id property="id" column="user_id"/>
         <result property="name" column="user_name"/>
         <result property="password" column="user_password"/>
+        <association property="dept" javaType="com.recursion123.model.Department">
+            <id property="id" column="dept_id"/>
+            <result property="name" column="dept_name"/>
+        </association>
         <collection property="role" ofType="int">
             <id property="role" column="role_id"/>
         </collection>
@@ -17,31 +21,49 @@
         <result property="name" column="name"/>
     </resultMap>
 
+    <resultMap id="Department" type="com.recursion123.model.Department">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
     <select id="listUser" resultMap="User">
         SELECT
         ut.id user_id,
         ut.name user_name,
         ut.password user_password,
         urm.role_id role_id,
-        rt.name role_name
+        rt.name role_name,
+        dt.id dept_id,
+        dt.name dept_name
         FROM user_tbl ut LEFT JOIN user_role_map urm ON urm.user_id = ut.id
         LEFT JOIN role_tbl rt ON urm.role_id = rt.id
+        LEFT JOIN dept_tbl dt ON ut.dept_id=dt.id
         <where>
             <if test="name != null">ut.name=#{name}</if>
         </where>
     </select>
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
-        <!--<selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">-->
-        <!--SELECT currval('user_tbl_id_seq')-->
-        <!--</selectKey>-->
-        INSERT INTO user_tbl(name,password) VALUES (#{name},#{password})
+        INSERT INTO user_tbl (name, password, dept_id) VALUES (#{name}, #{password}, #{dept.id})
     </insert>
 
-    <insert id="insertRole">
-        INSERT INTO role_tbl (name) VALUES (#{name})
-    </insert>
+    <update id="updateUser">
+        UPDATE user_tbl
+        SET password = #{password}, dept_id = #{dept.id}
+        WHERE id = #{id}
+    </update>
 
+    <delete id="deleteUser">
+        <if test="id != null">
+            DELETE from user_tbl WHERE id= #{id}
+        </if>
+    </delete>
+
+    <select id="findUser" resultType="int">
+        <if test="name != null">
+            select count(*) from user_tbl where name = #{name} and password=#{password}
+        </if>
+    </select>
     <insert id="insertUserRoleMap" useGeneratedKeys="true">
         insert into user_role_map(user_id,role_id) values
         <foreach item="Role" collection="role" separator=",">
@@ -54,23 +76,14 @@
         WHERE user_id = #{id}
     </delete>
 
-    <delete id="deleteUser">
-        <if test="name != null">
-            DELETE from user_tbl WHERE name= #{name}
-        </if>
-    </delete>
-
+    <insert id="insertRole">
+        INSERT INTO role_tbl (name) VALUES (#{name})
+    </insert>
     <delete id="deleteRole">
         <if test="id != null">
             DELETE from role_tbl WHERE id= #{id}
         </if>
     </delete>
-
-    <update id="updateUser">
-        UPDATE user_tbl
-        SET password = #{password}
-        WHERE id = #{id}
-    </update>
 
     <update id="updateRole">
         UPDATE role_tbl
@@ -91,16 +104,43 @@
         </where>
     </select>
 
-    <select id="findUser" resultType="int">
-        <if test="name != null">
-            select count(*) from user_tbl where name = #{name} and password=#{password}
-        </if>
-    </select>
-
-
     <select id="getRoleName" resultType="string">
         <if test="_parameter != null">
             select name from role_tbl where id = #{_parameter}
+        </if>
+    </select>
+
+    <insert id="insertDept">
+        INSERT INTO dept_tbl (name) VALUES (#{name})
+    </insert>
+    <delete id="deleteDept">
+        <if test="id != null">
+            DELETE from dept_tbl WHERE id= #{id}
+        </if>
+    </delete>
+
+    <update id="updateDept">
+        UPDATE dept_tbl
+        SET name = #{name}
+        WHERE id = #{id}
+    </update>
+
+    <select id="listDept" resultMap="Department">
+        select *
+        FROM dept_tbl
+        <where>
+            <if test="id!=null">
+                id=#{id}
+            </if>
+            <if test="name!=null">
+                and name=#{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="getDeptName" resultType="string">
+        <if test="_parameter != null">
+            select name from dept_tbl where id = #{_parameter}
         </if>
     </select>
 
