@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.recursion123.model.User">
-    <resultMap id="User" type="com.recursion123.model.User">
+    <resultMap id="User" type="User">
         <id property="id" column="user_id"/>
         <result property="name" column="user_name"/>
         <result property="password" column="user_password"/>
-        <association property="dept" javaType="com.recursion123.model.Department">
+        <association property="dept" javaType="Department">
             <id property="id" column="dept_id"/>
             <result property="name" column="dept_name"/>
         </association>
@@ -16,12 +16,12 @@
         </collection>
     </resultMap>
 
-    <resultMap id="Role" type="com.recursion123.model.Role">
+    <resultMap id="Role" type="Role">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
     </resultMap>
 
-    <resultMap id="Department" type="com.recursion123.model.Department">
+    <resultMap id="Department" type="Department">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
     </resultMap>
