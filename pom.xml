@@ -86,6 +86,19 @@
             <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
             <version>3.1.11</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>io.dubbo.springboot</groupId>-->
+            <!--<artifactId>spring-boot-starter-dubbo</artifactId>-->
+            <!--<version>1.0.0</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
