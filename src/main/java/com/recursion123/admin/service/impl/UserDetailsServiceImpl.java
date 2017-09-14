@@ -1,7 +1,7 @@
-package com.recursion123.service;
+package com.recursion123.admin.service.impl;
 
-import com.recursion123.dao.UserDao;
-import com.recursion123.model.User;
+import com.recursion123.admin.dao.UserDao;
+import com.recursion123.admin.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,10 +26,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findUserByName(username);
         if (user == null) {
-            System.err.println("user not found with the provided username:" + username);
+            System.err.println("用户不存在:" + username);
             return null;
         }
-        System.err.println("user from username " + user.toString());
+        System.err.println("当前用户: " + user.toString());
         return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), getAuthorities(user));
     }
 
@@ -39,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userDao.getRoleName(role));
             authorities.add(grantedAuthority);
         });
-        System.err.println("user authorities are " + authorities.toString());
+        System.err.println("用户拥有的权限:" + authorities.toString());
         return authorities;
     }
 

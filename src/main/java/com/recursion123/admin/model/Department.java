@@ -1,4 +1,4 @@
-package com.recursion123.model;
+package com.recursion123.admin.model;
 
 public class Department {
     private Integer id;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.recursion123.model.User">
+<mapper namespace="com.recursion123.admin.model.User">
     <resultMap id="User" type="User">
         <id property="id" column="user_id"/>
         <result property="name" column="user_name"/>
@@ -49,7 +49,13 @@
 
     <update id="updateUser">
         UPDATE user_tbl
-        SET password = #{password}, dept_id = #{dept.id}
+        SET dept_id = #{dept.id}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateUserPassword">
+        UPDATE user_tbl
+        SET password = #{password}
         WHERE id = #{id}
     </update>
 

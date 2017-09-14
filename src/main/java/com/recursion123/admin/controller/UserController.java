@@ -1,9 +1,9 @@
-package com.recursion123.controller;
+package com.recursion123.admin.controller;
 
-import com.recursion123.model.Department;
-import com.recursion123.model.Role;
-import com.recursion123.model.User;
-import com.recursion123.service.UserService;
+import com.recursion123.admin.model.Department;
+import com.recursion123.admin.model.Role;
+import com.recursion123.admin.model.User;
+import com.recursion123.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -43,6 +43,14 @@ public class UserController {
     @ResponseBody
     public Integer updateUser(@RequestBody User user) {
         return userService.updateUser(user);
+    }
+
+    @RequestMapping("/user/updatePassword")
+    @ResponseBody
+    public Integer updateUserPassword(@RequestBody User oldUser,@RequestBody User newUser) {
+        System.out.println("old"+oldUser);
+        System.out.println("new"+newUser);
+        return userService.updateUserPassword(oldUser,newUser);
     }
 
     @RequestMapping("/user/listRole")

@@ -16,7 +16,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <package name="com.recursion123.model"/>
+        <package name="com.recursion123.admin.model"/>
     </typeAliases>
     <mappers>
         <mapper resource="mybatis/mapper/User.xml"/>

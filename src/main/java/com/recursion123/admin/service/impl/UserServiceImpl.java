@@ -1,9 +1,10 @@
-package com.recursion123.service;
+package com.recursion123.admin.service.impl;
 
-import com.recursion123.dao.UserDao;
-import com.recursion123.model.Department;
-import com.recursion123.model.Role;
-import com.recursion123.model.User;
+import com.recursion123.admin.dao.UserDao;
+import com.recursion123.admin.model.Department;
+import com.recursion123.admin.model.Role;
+import com.recursion123.admin.model.User;
+import com.recursion123.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,6 @@ import java.util.List;
  * Created by zhang on 2017/1/22.
  */
 @Service
-@javax.jws.WebService(serviceName = "UserService", portName = "UserPort",
-        targetNamespace = "http://service.ws.sample/",
-        endpointInterface = "com.recursion123.service.UserService")
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
@@ -34,6 +32,14 @@ public class UserServiceImpl implements UserService {
 
     public Integer updateUser(User user) {
         return userDao.updateUser(user);
+    }
+
+    public Integer updateUserPassword(User oldUser,User newUser) {
+        Integer userNum=userDao.findUser(oldUser);
+        if(userNum==1){
+            return userDao.updateUser(newUser);
+        }
+        return userNum;
     }
 
     public Integer findUser(User user) {
@@ -76,5 +82,4 @@ public class UserServiceImpl implements UserService {
     public Integer updateDept(Department dept) {
         return userDao.updateDept(dept);
     }
-
 }

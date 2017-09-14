@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>war</packaging>
+    <!--<packaging>war</packaging>-->
     <groupId>ProjectDemo</groupId>
     <artifactId>ProjectDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -73,11 +73,6 @@
             <version>3.16.1</version>
         </dependency>
         <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna</artifactId>
-            <version>4.4.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
@@ -94,30 +89,59 @@
             <version>1.1.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.1.1</version>
+        </dependency>
         <!--<dependency>-->
-            <!--<groupId>io.dubbo.springboot</groupId>-->
-            <!--<artifactId>spring-boot-starter-dubbo</artifactId>-->
-            <!--<version>1.0.0</version>-->
+        <!--<groupId>io.dubbo.springboot</groupId>-->
+        <!--<artifactId>spring-boot-starter-dubbo</artifactId>-->
+        <!--<version>1.0.0</version>-->
         <!--</dependency>-->
     </dependencies>
+    <repositories>
+        <repository>
+            <id>spring-milestone</id>
+            <url>http://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestone</id>
+            <url>http://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.4</version>
-                    <configuration>
-                        <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                        <warName>ProjectDemo</warName>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
+                <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<version>2.4</version>-->
+                <!--<configuration>-->
+                <!--<warSourceDirectory>src/main/webapp</warSourceDirectory>-->
+                <!--<warName>ProjectDemo</warName>-->
+                <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
+                <!--</configuration>-->
+                <!--</plugin>-->
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
+                        <mainClass>com.recursion123.BaseApplication</mainClass>
                         <fork>true</fork>
                     </configuration>
                 </plugin>

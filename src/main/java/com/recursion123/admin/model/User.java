@@ -1,4 +1,4 @@
-package com.recursion123.model;
+package com.recursion123.admin.model;
 
 
 import java.io.Serializable;

@@ -1,13 +1,12 @@
-package com.recursion123.dao;
+package com.recursion123.admin.dao.impl;
 
-import com.recursion123.model.Department;
-import com.recursion123.model.Role;
-import com.recursion123.model.User;
-import org.apache.ibatis.mapping.Environment;
+import com.recursion123.admin.dao.UserDao;
+import com.recursion123.admin.model.Department;
+import com.recursion123.admin.model.Role;
+import com.recursion123.admin.model.User;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.sqlite.SQLiteConfig;
 
 import java.util.List;
 
@@ -48,6 +47,11 @@ public class UserDaoSqlImpl implements UserDao {
         this.sqlSession.delete("deleteUserRoleMap", user);
         this.sqlSession.insert("insertUserRoleMap", user);
         return this.sqlSession.update("updateUser", user);
+    }
+
+    @Override
+    public Integer updateUserPassword(User user) {
+        return this.sqlSession.update("updateUserPassword", user);
     }
 
     @Override

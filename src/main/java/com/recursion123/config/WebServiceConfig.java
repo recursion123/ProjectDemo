@@ -1,6 +1,6 @@
 package com.recursion123.config;
 
-import com.recursion123.service.UserServiceImpl;
+import com.recursion123.admin.service.TestService;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,8 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
     public Endpoint endpoint() {
-        EndpointImpl endpoint = new EndpointImpl(bus, new UserServiceImpl());
-        endpoint.publish("/UserService");
+        EndpointImpl endpoint = new EndpointImpl(bus, new TestService());
+        endpoint.publish("/TestService");
         return endpoint;
     }
 }

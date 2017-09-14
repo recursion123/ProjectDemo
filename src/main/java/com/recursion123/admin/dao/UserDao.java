@@ -1,8 +1,8 @@
-package com.recursion123.dao;
+package com.recursion123.admin.dao;
 
-import com.recursion123.model.Department;
-import com.recursion123.model.Role;
-import com.recursion123.model.User;
+import com.recursion123.admin.model.Department;
+import com.recursion123.admin.model.Role;
+import com.recursion123.admin.model.User;
 
 import java.util.List;
 
@@ -17,6 +17,8 @@ public interface UserDao {
     Integer deleteUser(User user);
 
     Integer updateUser(User user);
+
+    Integer updateUserPassword(User user);
 
     Integer findUser(User user);
 

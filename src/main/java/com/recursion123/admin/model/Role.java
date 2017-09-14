@@ -1,4 +1,4 @@
-package com.recursion123.model;
+package com.recursion123.admin.model;
 
 import java.io.Serializable;
 
@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by zhang on 2017/1/22.
  */
 public class Role implements Serializable {
+
     private Integer id;
     private String name;
 
