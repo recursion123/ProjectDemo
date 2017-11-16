@@ -18,23 +18,28 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
+    @Override
     public List<User> listUser(User user) {
         return userDao.listUser(user);
     }
 
+    @Override
     public Integer insertUser(User user) {
         return userDao.insertUser(user);
     }
 
+    @Override
     public Integer deleteUser(User user) {
         return userDao.deleteUser(user);
     }
 
+    @Override
     public Integer updateUser(User user) {
         return userDao.updateUser(user);
     }
 
-    public Integer updateUserPassword(User oldUser,User newUser) {
+    @Override
+    public Integer updateUserPassword(User oldUser, User newUser) {
         Integer userNum=userDao.findUser(oldUser);
         if(userNum==1){
             return userDao.updateUser(newUser);
@@ -42,18 +47,22 @@ public class UserServiceImpl implements UserService {
         return userNum;
     }
 
+    @Override
     public Integer findUser(User user) {
         return userDao.findUser(user);
     }
 
+    @Override
     public List<Role> listRole(Role role) {
         return userDao.listRole(role);
     }
 
+    @Override
     public Integer insertRole(Role role) {
         return userDao.insertRole(role);
     }
 
+    @Override
     public Integer updateRole(Role role) {
         return userDao.updateRole(role);
     }

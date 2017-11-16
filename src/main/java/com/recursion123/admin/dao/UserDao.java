@@ -3,12 +3,16 @@ package com.recursion123.admin.dao;
 import com.recursion123.admin.model.Department;
 import com.recursion123.admin.model.Role;
 import com.recursion123.admin.model.User;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
- * Created by zhang on 2017/1/22.
+ *
+ * @author zhang
+ * @date 2017/1/22
  */
+@Component
 public interface UserDao {
     List<User> listUser(User user);
 

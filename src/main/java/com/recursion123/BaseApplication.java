@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {MongoAutoConfiguration.class})
-@ComponentScan("com")
+@ComponentScan("com.*")
 public class BaseApplication extends SpringBootServletInitializer {
     //    //部署到外部tomcat
 //    @Override

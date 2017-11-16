@@ -17,8 +17,10 @@
 <configuration>
     <typeAliases>
         <package name="com.recursion123.admin.model"/>
+        <package name="com.recursion123.blog.model"/>
     </typeAliases>
     <mappers>
         <mapper resource="mybatis/mapper/User.xml"/>
+        <mapper resource="mybatis/mapper/Article.xml"/>
     </mappers>
 </configuration>

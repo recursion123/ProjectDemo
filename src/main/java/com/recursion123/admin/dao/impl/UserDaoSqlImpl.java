@@ -28,21 +28,21 @@ public class UserDaoSqlImpl implements UserDao {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Integer insertUser(User user) {
         this.sqlSession.insert("insertUser", user);
         return this.sqlSession.insert("insertUserRoleMap", user);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Integer deleteUser(User user) {
-        this.sqlSession.delete("deleteUserRoleMap",user);
+        this.sqlSession.delete("deleteUserRoleMap", user);
         return this.sqlSession.delete("deleteUser", user);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Integer updateUser(User user) {
         this.sqlSession.delete("deleteUserRoleMap", user);
         this.sqlSession.insert("insertUserRoleMap", user);
@@ -61,22 +61,22 @@ public class UserDaoSqlImpl implements UserDao {
 
     @Override
     public User findUserByName(String name) {
-        return this.sqlSession.selectOne("listUser", new User(name,null, null));
+        return this.sqlSession.selectOne("listUser", new User(null, name, null, null, null));
     }
 
     @Override
     public Integer insertRole(Role role) {
-        return this.sqlSession.insert("insertRole",role);
+        return this.sqlSession.insert("insertRole", role);
     }
 
     @Override
     public Integer updateRole(Role role) {
-        return this.sqlSession.update("updateRole",role);
+        return this.sqlSession.update("updateRole", role);
     }
 
     @Override
     public List<Role> listRole(Role role) {
-        return this.sqlSession.selectList("listRole",role);
+        return this.sqlSession.selectList("listRole", role);
     }
 
     @Override
@@ -91,26 +91,28 @@ public class UserDaoSqlImpl implements UserDao {
 
     @Override
     public Integer insertDept(Department dept) {
-        return this.sqlSession.insert("insertDept",dept);
+        return this.sqlSession.insert("insertDept", dept);
     }
 
     @Override
     public Integer updateDept(Department dept) {
-        return this.sqlSession.update("updateDept",dept);
+        return this.sqlSession.update("updateDept", dept);
     }
 
     @Override
     public List<Department> listDept(Department dept) {
-        return this.sqlSession.selectList("listDept",dept);
+        return this.sqlSession.selectList("listDept", dept);
     }
 
     @Override
     public Integer deleteDept(Department dept) {
-        return this.sqlSession.delete("deleteDept",dept);
+        return this.sqlSession.delete("deleteDept", dept);
     }
 
     @Override
     public String getDeptName(Integer id) {
         return this.sqlSession.selectOne("getDeptName", id);
     }
+
+
 }

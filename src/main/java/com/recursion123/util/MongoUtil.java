@@ -17,7 +17,7 @@ import java.util.Properties;
  * mongodb连接
  */
 public enum MongoUtil {
-    COLLECTIONS;
+    COLLECTIONS; //mongodb集合
 
     private Mongo mongo;
     private String mongoConfig = "mongoConfig";
@@ -51,6 +51,7 @@ public enum MongoUtil {
         }
     }
 
+    @SuppressWarnings("AliDeprecation")
     public MongoCollection getCollection(String name) {
         return new Jongo(getConnect().getDB(mongoDatabase)).getCollection(name);
     }

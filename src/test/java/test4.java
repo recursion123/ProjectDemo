@@ -1,17 +1,14 @@
-import com.sun.jna.Native;
-import com.sun.jna.win32.StdCallLibrary;
+import com.google.gson.Gson;
+import org.junit.Test;
 
-public class test4
-{
-    public interface kernel32 extends StdCallLibrary
-    {
-        kernel32 INSTANCE = (kernel32)Native.loadLibrary("kernel32",kernel32.class);//加载系统kernel32 DLL文件，也可以是C++写的DLL文件
-        int RemoveDirectoryA(String path);
-    }
-    public static void main(String[] args) throws Exception
-    {
-        //System.setProperty("jna.encoding","GBK");//设置编码，防止乱码
-        System.out.println(kernel32.INSTANCE.RemoveDirectoryA("C:\\Users\\zhang\\Desktop\\11"));
+import java.util.List;
+import java.util.Map;
 
+public class test4 {
+    @Test
+    public void test(){
+        String json="[{'id':'20130717001','ids':'20130717001','data':{'name':'张三','age':'18','idNumber':'429006198808081313','sex':'男'}}]";
+        List list=new Gson().fromJson(json, List.class);
+        System.out.println(((Map)list.get(0)).get("id"));
     }
 }
