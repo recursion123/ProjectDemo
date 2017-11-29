@@ -83,7 +83,7 @@
     </insert>
 
     <select id="listArticleTag" resultType="ArticleTag">
-        SELECT *
+        SELECT DISTINCT name
         FROM tag_tbl;
     </select>
 
